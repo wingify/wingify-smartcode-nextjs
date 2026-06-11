@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2026-06-09
+## [1.1.0] - 2026-06-11
 
 Initial release of **wingify-smartcode-nextjs**, the Wingify-branded Next.js integration for SmartCode. This package continues the functionality previously shipped as [`vwo-smartcode-nextjs`](https://www.npmjs.com/package/vwo-smartcode-nextjs) under the Wingify product name.
 
