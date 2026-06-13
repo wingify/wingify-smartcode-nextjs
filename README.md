@@ -6,8 +6,6 @@
 
 The **Wingify SmartCode Next.js** package enables seamless integration of **Wingify SmartCode** into Next.js applications. This component is designed to work with both **Page Router** and **App Router**, allowing developers to integrate Wingify SmartCode efficiently.
 
-> **Migrating from `vwo-smartcode-nextjs`?** This package is the Wingify-branded successor to [`vwo-smartcode-nextjs`](https://www.npmjs.com/package/vwo-smartcode-nextjs). Replace the package name and rename `VWOScript` to `WingifyScript` in your imports and JSX. See [CHANGELOG.md](./CHANGELOG.md) for details.
-
 ## Installation
 
 Install the package using npm or yarn:
