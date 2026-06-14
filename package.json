@@ -1,6 +1,6 @@
 {
   "name": "wingify-smartcode-nextjs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Next.js component for Wingify SmartCode integration",
   "main": "dist/WingifyScript.min.js",
   "scripts": {
