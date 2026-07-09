@@ -9,9 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **BREAKING:** Removed the `version` prop; the component now always loads SmartCode **3.0**
-- **BREAKING:** Changed the default `type` from `'ASYNC'` to `'SYNC'`
-- Removed SmartCode **2.2** loader snippet and `/lib/` sync endpoint support
 
 ### Migration
 
