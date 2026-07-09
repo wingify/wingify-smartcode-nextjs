@@ -4,7 +4,7 @@
 
 ## Overview
 
-The **Wingify SmartCode Next.js** package enables seamless integration of **Wingify SmartCode** into Next.js applications. This component is designed to work with both **Page Router** and **App Router**, allowing developers to integrate Wingify SmartCode efficiently.
+The **Wingify SmartCode Next.js** package enables seamless integration of **Wingify SmartCode 3.0** into Next.js applications. This component is designed to work with both **Page Router** and **App Router**, allowing developers to integrate Wingify SmartCode efficiently.
 
 ## Installation
 
@@ -88,8 +88,7 @@ The `WingifyScript` component accepts the following props:
 | Prop               | Type                     | Required | Default                                                                                | Description                                         |
 | ------------------ | ------------------------ | -------- | -------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | `accountId`        | `string`                 | ✅ Yes   | —                                                                                      | Your Wingify account ID                             |
-| `version`          | `2.2 \| 3.0`             | No       | `2.2`                                                                                  | SmartCode version to load                           |
-| `type`             | `'ASYNC' \| 'SYNC'`      | No       | `'ASYNC'`                                                                              | Type of SmartCode script loading                    |
+| `type`             | `'ASYNC' \| 'SYNC'`      | No       | `'SYNC'`                                                                               | Type of SmartCode script loading                    |
 | `settingsTimeout`  | `number`                 | No       | `2000`                                                                                 | Timeout for settings initialization                 |
 | `hideElement`      | `string`                 | No       | `'body'`                                                                               | CSS selector for the element to be hidden           |
 | `hideElementStyle` | `string`                 | No       | `'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important'` | CSS styles applied to the hidden element            |
@@ -128,4 +127,3 @@ Our [Code of Conduct](https://github.com/wingify/wingify-smartcode-nextjs/blob/m
 [Apache License, Version 2.0](https://github.com/wingify/wingify-smartcode-nextjs/blob/master/LICENSE)
 
 &copy; 2025 Wingify Software Pvt. Ltd.
-# wingify-smartcode-nextjs

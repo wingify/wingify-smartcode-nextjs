@@ -16,7 +16,6 @@
 import React from 'react';
 interface WingifyScriptProps {
     accountId: string;
-    version?: 2.2 | 3.0;
     type?: 'ASYNC' | 'SYNC';
     settingsTimeout?: number;
     hideElement?: string;
