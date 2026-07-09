@@ -88,7 +88,7 @@ The `WingifyScript` component accepts the following props:
 | Prop               | Type                     | Required | Default                                                                                | Description                                         |
 | ------------------ | ------------------------ | -------- | -------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | `accountId`        | `string`                 | ✅ Yes   | —                                                                                      | Your Wingify account ID                             |
-| `type`             | `'ASYNC' \| 'SYNC'`      | No       | `'ASYNC'`                                                                              | Type of SmartCode script loading                    |
+| `type`             | `'ASYNC' \| 'SYNC'`      | No       | `'SYNC'`                                                                               | Type of SmartCode script loading                    |
 | `settingsTimeout`  | `number`                 | No       | `2000`                                                                                 | Timeout for settings initialization                 |
 | `hideElement`      | `string`                 | No       | `'body'`                                                                               | CSS selector for the element to be hidden           |
 | `hideElementStyle` | `string`                 | No       | `'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important'` | CSS styles applied to the hidden element            |

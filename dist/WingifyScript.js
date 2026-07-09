@@ -32,7 +32,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WingifyScript = void 0;
 var react_1 = __importDefault(require("react"));
 var WingifyScript = function (_a) {
-    var accountId = _a.accountId, _b = _a.type, type = _b === void 0 ? 'ASYNC' : _b, _c = _a.settingsTimeout, settingsTimeout = _c === void 0 ? 2000 : _c, _d = _a.hideElement, hideElement = _d === void 0 ? 'body' : _d, _e = _a.hideElementStyle, hideElementStyle = _e === void 0 ? 'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important' : _e, _f = _a.scriptAttributes, scriptAttributes = _f === void 0 ? {} : _f, _g = _a.linkAttributes, linkAttributes = _g === void 0 ? {} : _g;
+    var accountId = _a.accountId, _b = _a.type, type = _b === void 0 ? 'SYNC' : _b, _c = _a.settingsTimeout, settingsTimeout = _c === void 0 ? 2000 : _c, _d = _a.hideElement, hideElement = _d === void 0 ? 'body' : _d, _e = _a.hideElementStyle, hideElementStyle = _e === void 0 ? 'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important' : _e, _f = _a.scriptAttributes, scriptAttributes = _f === void 0 ? {} : _f, _g = _a.linkAttributes, linkAttributes = _g === void 0 ? {} : _g;
     try {
         var scriptType = typeof type === 'string' ? type.toLowerCase() : 'async';
         if (!accountId) {

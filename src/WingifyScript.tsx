@@ -28,7 +28,7 @@ interface WingifyScriptProps {
 
 export const WingifyScript: React.FC<WingifyScriptProps> = ({
   accountId,
-  type = 'ASYNC',
+  type = 'SYNC',
   settingsTimeout = 2000,
   hideElement = 'body',
   hideElementStyle = 'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important',
