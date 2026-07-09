@@ -6,31 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.1.3] - 2026-07-09
+- Default version for wingify smartcode nextjs is v3.
 
 ### Changed
 
-- **BREAKING:** Removed the `version` prop; the component now always loads SmartCode **3.0**
-- **BREAKING:** Changed the default `type` from `'ASYNC'` to `'SYNC'`
-- Default version for wingify smartcode nextjs is v3.
-- Removed SmartCode **2.2** loader snippet and `/lib/` sync endpoint support
-
-### Migration
-
-If you were passing `version={3.0}` or relying on the default, remove the `version` prop:
-
-```diff
-- <WingifyScript accountId="YOUR_ACCOUNT_ID" version={3.0} />
-+ <WingifyScript accountId="YOUR_ACCOUNT_ID" />
-```
-
-If you were using `version={2.2}`, upgrade your Wingify account to SmartCode 3.0 before updating to this release.
-
-If you relied on the previous default async loader (inline snippet with element hiding), pass `type="ASYNC"` explicitly:
-
-```diff
-- <WingifyScript accountId="YOUR_ACCOUNT_ID" />
-+ <WingifyScript accountId="YOUR_ACCOUNT_ID" type="ASYNC" />
-```
 
 ## [1.1.2] - 2026-06-17
 
