@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
-- When `hide_element()` is empty (e.g. after first-contentful-paint), do not re-hide via `requestAnimationFrame`
+- When `hide_element()` is empty or `hideEl` is unset (e.g. after first-contentful-paint), do not re-hide via `requestAnimationFrame`
 
 ## [1.1.3] - 2026-07-09
 
