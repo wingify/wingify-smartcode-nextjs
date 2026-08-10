@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
-- When `hide_element()` is empty or `hideEl` is unset (e.g. after first-contentful-paint), do not re-hide via `requestAnimationFrame`
+- Avoid hiding from the SmartCode script during hydration when initial content has loaded.
 
 ## [1.1.3] - 2026-07-09
 
