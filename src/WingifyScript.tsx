@@ -15,6 +15,7 @@
  */
 
 import React from 'react';
+import { buildSmartCode } from './smartCode.generated';
 
 interface WingifyScriptProps {
   accountId: string;
@@ -48,7 +49,13 @@ export const WingifyScript: React.FC<WingifyScriptProps> = ({
       return null;
     }
 
-    const smartCode = `window._wingify_code||(function(){var account_id=${accountId},version=3.0,settings_tolerance=${settingsTimeout},hide_element='${hideElement}',hide_element_style='${hideElementStyle}';var t=window,n=document;if(-1<n.URL.indexOf('__wingify_disable__')||t._wingify_code)return;var i=!1,o=n.currentScript,e={sT:settings_tolerance,hES:hide_element_style,hE:hide_element};try{e=Object.assign(e, JSON.parse(localStorage.getItem('_wingify_'+account_id+'_config')))}catch(e){}var code={script:o,nonce:o.nonce,settings_tolerance:function(){return e.sT},hide_element:function(){return performance.getEntriesByName('first-contentful-paint')[0]?'':e.hE},hide_element_style:function(){return'{'+e.hES+'}'},getVersion:function(){return version},finish:function(){var e;!i&&(i=!0,e=n.getElementById('_vis_opt_path_hides'))&&e.parentNode.removeChild(e)},finished:function(){return i},addScript:function(e){var t=n.createElement('script');t.src=e,o.nonce&&t.setAttribute('nonce',o.nonce),t.fetchPriority='high',n.head.appendChild(t)},init:function(){t._settings_timer=setTimeout(function(){code.finish()},this.settings_tolerance());var e=n.createElement('style');e.id='_vis_opt_path_hides',o.nonce&&e.setAttribute('nonce',o.nonce),e.textContent=this.hide_element()+this.hide_element_style(),n.head.appendChild(e),this.addScript('https://edge.wingify.net/tag/'+account_id+'.js')}};t._wingify_code=code;code.init();})();function d(){var e;t._wingify_code&&(e=d.hidingStyle=document.getElementById('_vis_opt_path_hides')||d.hidingStyle,t._wingify_code.finished()||_wingify_code.libExecuted||t.Wingify&&Wingify.dNR||(document.getElementById('_vis_opt_path_hides')||document.getElementsByTagName('head')[0].appendChild(e),requestAnimationFrame(d)))}var t;t=window,d();`;
+    // After FCP, hide_element() is '' — rAF must not re-append the hide style.
+    const smartCode = buildSmartCode({
+      accountId,
+      settingsTimeout,
+      hideElement,
+      hideElementStyle,
+    });
 
     if (scriptType === 'sync') {
       return (
