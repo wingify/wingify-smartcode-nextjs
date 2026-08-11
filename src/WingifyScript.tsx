@@ -126,7 +126,7 @@ function d() {
 var t;
 t = window;
 d();
-`;
+`.replace(/\n\s*/g, '');
 
     if (scriptType === 'sync') {
       return (
