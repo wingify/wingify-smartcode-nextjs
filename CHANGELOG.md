@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-08-11
+
 ### Fixed
 - Avoid hiding from the SmartCode script during hydration when initial content has loaded.
 
