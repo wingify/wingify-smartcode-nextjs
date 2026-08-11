@@ -20,7 +20,8 @@ const PLACEHOLDERS = {
 async function main() {
   const source = fs.readFileSync(SOURCE, 'utf8');
   const result = await minify(source, {
-    compress: true,
+    // sequences:false keeps `function d()` at the bottom (original SmartCode order).
+    compress: { defaults: true, sequences: false },
     mangle: true,
     format: { comments: false },
     // Browser snippet, not an ES module
