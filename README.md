@@ -36,6 +36,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          {/* SmartCode 3.0 only — see the warning above before using this package */}
           <WingifyScript accountId="YOUR_ACCOUNT_ID" />
         </Head>
         <body>
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        {/* SmartCode 3.0 only — see the warning above before using this package */}
         <WingifyScript accountId="YOUR_ACCOUNT_ID" />
       </head>
       <body>{children}</body>
@@ -75,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 To add a nonce attribute for Content Security Policy:
 
 ```tsx
+{/* SmartCode 3.0 only — see the warning above before using this package */}
 <WingifyScript
   accountId="YOUR_ACCOUNT_ID"
   scriptAttributes={{
