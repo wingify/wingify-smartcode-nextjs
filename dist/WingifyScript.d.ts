@@ -23,5 +23,9 @@ interface WingifyScriptProps {
     scriptAttributes?: React.ScriptHTMLAttributes<HTMLScriptElement>;
     linkAttributes?: React.LinkHTMLAttributes<HTMLLinkElement>;
 }
+/**
+ * Loads Wingify SmartCode 3.0.
+ * Use only when SmartCode 3.0 is enabled for the account. Do not use this component otherwise.
+ */
 export declare const WingifyScript: React.FC<WingifyScriptProps>;
 export {};

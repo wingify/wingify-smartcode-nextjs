@@ -6,6 +6,8 @@
 
 The **Wingify SmartCode Next.js** package enables seamless integration of **Wingify SmartCode 3.0** into Next.js applications. This component is designed to work with both **Page Router** and **App Router**, allowing developers to integrate Wingify SmartCode efficiently.
 
+> **Warning:** This package loads SmartCode version `3.0` only. Use it only when SmartCode `3.0` is enabled for your account and shown in the Wingify dashboard. If version `3.0` is not enabled for the account, do not install or use this package. Contact your CSM or Wingify Support to have it enabled.
+
 ## Installation
 
 Install the package using npm or yarn:

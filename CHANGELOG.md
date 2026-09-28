@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Documented that SmartCode 3.0 must already be enabled for the account. This package cannot be used when 3.0 is not enabled.
+
 ## [1.5.0] - 2026-08-11
 
 ### Fixed
