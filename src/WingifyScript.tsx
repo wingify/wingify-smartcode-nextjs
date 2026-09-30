@@ -27,6 +27,7 @@ interface WingifyScriptProps {
   linkAttributes?: React.LinkHTMLAttributes<HTMLLinkElement>;
 }
 
+
 export const WingifyScript: React.FC<WingifyScriptProps> = ({
   accountId,
   type = 'SYNC',

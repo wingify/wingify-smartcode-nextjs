@@ -23,5 +23,6 @@ interface WingifyScriptProps {
     scriptAttributes?: React.ScriptHTMLAttributes<HTMLScriptElement>;
     linkAttributes?: React.LinkHTMLAttributes<HTMLLinkElement>;
 }
+
 export declare const WingifyScript: React.FC<WingifyScriptProps>;
 export {};
