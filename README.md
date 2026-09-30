@@ -6,7 +6,9 @@
 
 The **Wingify SmartCode Next.js** package enables seamless integration of **Wingify SmartCode 3.0** into Next.js applications. This component is designed to work with both **Page Router** and **App Router**, allowing developers to integrate Wingify SmartCode efficiently.
 
-> **Warning:** This package loads SmartCode version `3.0` only. Use it only when SmartCode `3.0` is enabled for your account and shown in the Wingify dashboard. If version `3.0` is not enabled for the account, do not install or use this package. Contact your CSM or Wingify Support to have it enabled.
+<a id="smartcode-30-warning"></a>
+
+> **Warning:** This package loads SmartCode version `3.0` only. Use it only if your Wingify account was created on or after June 14, 2026. If your account was created before that date, do not install or use this package. Contact your CSM or Wingify Support if you're unsure whether this applies to your account.
 
 ## Installation
 
@@ -24,7 +26,7 @@ yarn add wingify-smartcode-nextjs
 
 ### Page Router (Legacy `pages/` Directory)
 
-For applications using the **Page Router**, add the `WingifyScript` component inside `_document.js` (or `_document.tsx` if using TypeScript) to include it in the `<head>` of your HTML document.
+For applications using the **Page Router**, add the `WingifyScript` component inside `_document.js` (or `_document.tsx` if using TypeScript) to include it in the `<head>` of your HTML document. See the [Warning](#smartcode-30-warning) above before using this package.
 
 ```javascript
 // pages/_document.js
@@ -36,7 +38,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* SmartCode 3.0 only — see the warning above before using this package */}
           <WingifyScript accountId="YOUR_ACCOUNT_ID" />
         </Head>
         <body>
@@ -53,7 +54,7 @@ export default MyDocument;
 
 ### App Router (`app/` Directory)
 
-For applications using the **App Router**, include the `WingifyScript` component in `layout.tsx` to ensure it loads correctly within the `<head>` of your HTML document.
+For applications using the **App Router**, include the `WingifyScript` component in `layout.tsx` to ensure it loads correctly within the `<head>` of your HTML document. See the [Warning](#smartcode-30-warning) above before using this package.
 
 ```tsx
 // app/layout.tsx
@@ -63,7 +64,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        {/* SmartCode 3.0 only — see the warning above before using this package */}
         <WingifyScript accountId="YOUR_ACCOUNT_ID" />
       </head>
       <body>{children}</body>
@@ -74,10 +74,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ### Using Nonce
 
-To add a nonce attribute for Content Security Policy:
+To add a nonce attribute for Content Security Policy. See the [Warning](#smartcode-30-warning) above before using this package:
 
 ```tsx
-{/* SmartCode 3.0 only — see the warning above before using this package */}
 <WingifyScript
   accountId="YOUR_ACCOUNT_ID"
   scriptAttributes={{
