@@ -25,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     # Tag pushes always run. Manual runs only from main.
     if: github.event_name == 'push' || github.ref == 'refs/heads/main'
+    env:
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true' && '1' || '0' }}
 
     steps:
       - name: Checkout repository
@@ -39,11 +41,34 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           cache: npm
 
+      - name: Require NPM_TOKEN
+        if: env.DRY_RUN != '1'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "${NODE_AUTH_TOKEN}" ]; then
+            echo "ERROR: secrets.NPM_TOKEN is not set"
+            exit 1
+          fi
+
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
+
+      - name: Verify build outputs
+        run: |
+          node -e '
+            const fs = require("fs");
+            const pkg = require("./package.json");
+            const missing = [pkg.main, pkg.types].filter((f) => f && !fs.existsSync(f));
+            if (missing.length) {
+              console.error("ERROR: build output missing: " + missing.join(", "));
+              process.exit(1);
+            }
+            console.log("Build outputs OK:", [pkg.main, pkg.types].filter(Boolean).join(", "));
+          '
 
       - name: Read package version
         id: pkg
@@ -71,9 +96,8 @@ jobs:
           fi
 
           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
-            PUSHED_TAG="${GITHUB_REF_NAME}"
-            if [[ "${PUSHED_TAG}" != "${TAG}" ]]; then
-              echo "ERROR: Pushed tag '${PUSHED_TAG}' does not match package.json version tag '${TAG}'"
+            if [[ "${GITHUB_REF_NAME}" != "${TAG}" ]]; then
+              echo "ERROR: Pushed tag '${GITHUB_REF_NAME}' does not match package.json version tag '${TAG}'"
               exit 1
             fi
           fi
@@ -97,7 +121,6 @@ jobs:
         if: steps.npm_check.outputs.already_published != 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true' && '1' || '0' }}
         run: |
           if [ "${DRY_RUN}" = "1" ]; then
             echo "=== DRY_RUN: would publish ${{ steps.pkg.outputs.name }}@${{ steps.pkg.outputs.version }} ==="
@@ -109,8 +132,6 @@ jobs:
 
       - name: Create and push tag
         if: github.event_name == 'workflow_dispatch'
-        env:
-          DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '0' }}
         run: |
           TAG="${{ steps.pkg.outputs.tag }}"
 
@@ -133,19 +154,19 @@ jobs:
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
-          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true' && '1' || '0' }}
         run: |
           VERSION="${{ steps.pkg.outputs.version }}"
           TAG="${{ steps.pkg.outputs.tag }}"
+          NOTES_FILE=$(mktemp)
 
-          NOTES=$(awk -v header="## [${VERSION}]" '
+          awk -v header="## [${VERSION}]" '
             index($0, header) == 1 { found = 1; next }
             found && /^## \[/ { exit }
             found && /^[[:space:]]*$/ { if (started) blank++; next }
             found { while (blank > 0) { print ""; blank-- } print; started = 1 }
-          ' CHANGELOG.md)
+          ' CHANGELOG.md > "${NOTES_FILE}"
 
-          if [ -z "${NOTES}" ]; then
+          if [ ! -s "${NOTES_FILE}" ]; then
             echo "ERROR: CHANGELOG.md '## [${VERSION}]' entry is empty"
             exit 1
           fi
@@ -157,13 +178,13 @@ jobs:
 
           if [ "${DRY_RUN}" = "1" ]; then
             echo "=== DRY_RUN: would create GitHub Release ${TAG} with these notes: ==="
-            echo "${NOTES}"
+            cat "${NOTES_FILE}"
             exit 0
           fi
 
           if git rev-parse "${TAG}" >/dev/null 2>&1; then
-            gh release create "${TAG}" --title "Version ${VERSION}" --notes "${NOTES}" --verify-tag
+            gh release create "${TAG}" --title "Version ${VERSION}" --notes-file "${NOTES_FILE}" --verify-tag
           else
-            gh release create "${TAG}" --title "Version ${VERSION}" --notes "${NOTES}" --target "${{ github.sha }}"
+            gh release create "${TAG}" --title "Version ${VERSION}" --notes-file "${NOTES_FILE}" --target "${{ github.sha }}"
           fi
           echo "=== Created GitHub Release ${TAG} ==="
